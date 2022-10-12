@@ -1,0 +1,104 @@
+body{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #9b9897;
+  justify-content: center;
+  align-items: center;
+}
+.container{
+  width: 250px;
+  height: 100px;
+  position: absolute;
+  left: 100px;
+  top: 150px;
+}
+.container .interno{
+  transition: 0.4s ease-in-out;
+  transition-delay: 0s;
+}
+.container .caixa{
+  transition: transform 0.4s ease-in-out;
+  transition-delay: 0.4s;
+}
+.container .caixa::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 80px;
+  background: linear-gradient(to right,
+  #2c372a, #d8804e, #e92d0c);
+}
+.container input:checked ~ .caixa{
+  animation: movimento 0.8s ease-in-out 1 forwards;
+  transform: rotate(180deg);
+}
+.container input:checked ~ .caixa::before{
+  background: linear-gradient(to left,
+  #03001e, #3b79e4, #0c57ab);
+}
+@keyframes movimento {
+  0%{
+    width: 250px;
+    transform: rotate(0deg);
+  }
+  25%{
+    width: 100px;
+    transform: rotate(0deg);
+  }
+  50%{
+    width: 100px;
+    transform: rotate(180deg);
+  }
+  100%{
+    width: 250px;
+    transform: translateX(150px) rotate(180deg);
+  }
+}
+.container input:checked ~ .caixa ~ .interno{
+  transition-delay: 0.4s;
+  transform: translateX(150px);
+  box-shadow: inset 5px -10px 15px 0
+  rgba(0, 0, 0, 0.5);
+}
+.caixa, body input{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  border-radius: 80px;
+  opacity: 0;
+}
+.caixa{
+  background: linear-gradient(to right,
+  #03001e, #7303c0, #ec38bc);
+  box-shadow: inset 0 0 0 1px 
+  rgba(0, 0, 0, 0.25), 0 0 20px 0 
+  rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  z-index: 0;
+  transform-origin: 50px 50px;
+  transition: margin 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out,
+  margin 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out,
+  margin 0.3s ease-in-out;
+  transition-delay: 0s, 0.3s;
+}
+.interno{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  box-shadow: inset -5px -10px 15px 0
+  rgba(0, 0, 0, 0.5);
+  background-position: -35px -30px;
+  background-size: 120px;
+  position: absolute;
+  left: 10px;
+  top: 10%;
+  border-radius: 500%;
+  transition: margin 0.3s ease-in-out;
+  transition-delay: 0.3s, 0s;
+}
